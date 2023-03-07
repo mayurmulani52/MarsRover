@@ -1,15 +1,17 @@
 package org.marsrover.model;
 
 
+import org.marsrover.exception.InvalidCoordinatesException;
+
 public class PlateauCoordinates {
 
     private static int top;
 
     private static int right;
 
-    private static int bottom = 0;
+    private static int bottom;
 
-    private static int left = 0;
+    private static int left;
 
     public static int getTop() {
         return top;
@@ -42,4 +44,13 @@ public class PlateauCoordinates {
     public static void setLeft(int left) {
         PlateauCoordinates.left = left;
     }
+
+    public static void setTopRightCoordinates(int top, int right) throws InvalidCoordinatesException {
+        if(top < 0 || right < 0) {
+            throw new InvalidCoordinatesException("Invalid co-ordinates(top=" + top + ", right=" + right + "). Requires Positive values only");
+        }
+        setTop(top);
+        setRight(right);
+    }
+
 }
