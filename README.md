@@ -1,13 +1,5 @@
-## Mars Rover Technical Challenge
 
-The problem below requires some kind of input. You can implement any mechanism for feeding input into your solution (for example, using hard-coded data within a unit test). You should provide sufficient evidence that your solution is complete by, as a minimum, indicating that it works correctly against the supplied test data.
-
-The code you write should be of production quality, and most importantly, it should be code you are proud of.
-
-Code must be submitted via a personal “git” repo and should contain a README with a detailed breakdown of philosophy, assumptions, explanation of the code and necessary steps to run the code.
-
-
-### MARS ROVERS
+### MARS ROVERS Technical Challenge
 
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars.
 
