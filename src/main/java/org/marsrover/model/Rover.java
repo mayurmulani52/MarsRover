@@ -14,9 +14,7 @@ import org.marsrover.exception.InvalidCoordinatesException;
 @Slf4j
 public class Rover {
 
-    private int roverId;
-
-    private static int count;
+    private String roverId;
     private static final char LEFT = 'L';
     private static final char RIGHT = 'R';
 
@@ -26,12 +24,13 @@ public class Rover {
 
     private String commands;
 
+
     /**
      * Method to turn rover left from its current direction.
      */
     public void turnLeft() {
         int left = ((position.getOrientation() == 0) ? Direction.cardinalPoints.size() : position.getOrientation()) - 1;
-        log.info("Rover[" + roverId + "] LEFT(" + Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(left));
+        //log.info("Rover[" + roverId + "] LEFT(" + Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(left));
         position.setOrientation(left);
     }
 
@@ -40,7 +39,7 @@ public class Rover {
      */
     public void turnRight() {
         int right = (position.getOrientation() + 1) % Direction.cardinalPoints.size();
-        log.info("Rover[" + roverId + "] RIGHT(" +Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(right));
+        //log.info("Rover[" + roverId + "] RIGHT(" +Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(right));
         position.setOrientation(right);
     }
 
@@ -48,7 +47,7 @@ public class Rover {
      * Method to move rover one step forward.
      */
     public void moveForward() {
-        log.info("Rover[" + roverId + "] MOVE FWD");
+        //log.info("Rover[" + roverId + "] MOVE FWD");
         switch (Direction.cardinalPoints.get(position.getOrientation())) {
             case Direction.NORTH:
                 if (position.getY() < PlateauCoordinates.getTop()) {
@@ -73,11 +72,10 @@ public class Rover {
         }
     }
 
-
     /**
      * Method to navigate rover either left or right, or move forward.
      */
-    public void startNavigation() {
+    public void navigateRover() {
         for (char command : getCommands().toCharArray()) {
             if (command == LEFT)
                 turnLeft();
@@ -92,8 +90,8 @@ public class Rover {
      * Display rover's position.
      */
     public void displayPosition(final String prefix) {
-        log.info("Rover[" + roverId + "] " + prefix + " POSITION X:" + position.getX() + " Y:" + position.getY() + " DIRECTION:");
-
+        log.info("Rover[" + roverId + "] " + prefix + " POSITION Is: " + position.getX() + " " + position.getY() + " " +
+                Direction.getDirectionByOrientation(position.getOrientation()));
     }
 
 

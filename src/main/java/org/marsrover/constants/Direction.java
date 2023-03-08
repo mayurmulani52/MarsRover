@@ -1,11 +1,9 @@
 package org.marsrover.constants;
 
 import lombok.extern.slf4j.Slf4j;
+import org.marsrover.exception.MarsRoverInputException;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Slf4j
 public final class Direction {
@@ -16,9 +14,49 @@ public final class Direction {
 
     public static final List<String> cardinalPoints = List.of(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
-    public static Map<String, Integer> cardinalPointsMap = null;
+    public static int getOrientationByDirection(String direction) {
 
-    static {
-        cardinalPointsMap= IntStream.range(0, cardinalPoints.size()).boxed().collect(Collectors.toMap( i -> cardinalPoints.get(i),i -> i));
+        int orientation;
+
+        switch (direction) {
+            case "N" -> {
+                return 0;
+            }
+            case "E" -> {
+                return 1;
+            }
+            case "S" -> {
+                return 2;
+            }
+            case "W" -> {
+                return 3;
+            }
+            default -> {
+                throw new MarsRoverInputException("Invalid Mars Rover Orientation captured");
+            }
+        }
+    }
+
+    public static String getDirectionByOrientation(int orientation) {
+
+        String direction = "";
+
+        switch (orientation) {
+            case 0 -> {
+                return "N";
+            }
+            case 1 -> {
+                return "E";
+            }
+            case 2 -> {
+                return "S";
+            }
+            case 3 -> {
+                return "W";
+            }
+            default -> {
+                throw new MarsRoverInputException("Invalid Mars Rover Direction captured");
+            }
+        }
     }
 }

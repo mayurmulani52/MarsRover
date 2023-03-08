@@ -9,9 +9,9 @@ public class PlateauCoordinates {
 
     private static int right;
 
-    private static int bottom;
+    private static final int bottom=0;
 
-    private static int left;
+    private static final int left=0;
 
     public static int getTop() {
         return top;
@@ -33,24 +33,28 @@ public class PlateauCoordinates {
         return bottom;
     }
 
-    public static void setBottom(int bottom) {
-        PlateauCoordinates.bottom = bottom;
-    }
 
     public static int getLeft() {
         return left;
     }
 
-    public static void setLeft(int left) {
-        PlateauCoordinates.left = left;
-    }
 
     public static void setTopRightCoordinates(int top, int right) throws InvalidCoordinatesException {
-        if(top < 0 || right < 0) {
+        if (top < 0 || right < 0) {
             throw new InvalidCoordinatesException("Invalid co-ordinates(top=" + top + ", right=" + right + "). Requires Positive values only");
         }
         setTop(top);
         setRight(right);
     }
 
+    public static void setPlateauCoordinates(String input) throws InvalidCoordinatesException{
+
+        String[] inputCoordinates= input.split(" ");
+        if (inputCoordinates.length != 2) {
+            throw new InvalidCoordinatesException("Please input correct values!");
+        }
+        int top = Integer.parseInt(inputCoordinates[0]);
+        int right = Integer.parseInt(inputCoordinates[1]);
+        setTopRightCoordinates(top, right);
+    }
 }
