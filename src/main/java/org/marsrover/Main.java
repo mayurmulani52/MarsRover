@@ -59,7 +59,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         log.info("Please input the coordinates of the Plateau! Make sure its positive values only! for e.g: 2 2");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String firstLine = br.readLine();
@@ -67,8 +66,9 @@ public class Main {
         Main main = new Main();
         List<Rover> roverList = new ArrayList<Rover>();
         try {
-            // taking two rover inputs for the deployment. It can be increased as per the need
-            for (int i = 0; i < 2; i++) {
+            log.info("Please input the Number of Roves need to get deployed on plateau !");
+            int numberOfRovers = Integer.parseInt(br.readLine());
+            for (int i = 0; i < numberOfRovers; i++) {
                 Rover rover = null;
                 log.info("Please input the Rover Position split by Space! for e.g: 1 2 N");
                 String roverPositionLine = br.readLine();
