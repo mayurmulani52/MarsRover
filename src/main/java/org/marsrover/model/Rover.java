@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.marsrover.constants.Direction;
 import org.marsrover.exception.InvalidCoordinatesException;
+import org.marsrover.exception.MarsRoverInputException;
 
 
 @Data
@@ -23,7 +24,6 @@ public class Rover {
     private Position position;
 
     private String commands;
-
 
     /**
      * Method to turn rover left from its current direction.
@@ -75,7 +75,7 @@ public class Rover {
     /**
      * Method to navigate rover either left or right, or move forward.
      */
-    public void navigateRover() {
+    public void navigateRover() throws MarsRoverInputException {
         for (char command : getCommands().toCharArray()) {
             if (command == LEFT)
                 turnLeft();
@@ -83,15 +83,9 @@ public class Rover {
                 turnRight();
             else if (command == MOVE)
                 moveForward();
+            else
+                throw new MarsRoverInputException("Invalid MarsRoverInput! Please input correct values!");
         }
-    }
-
-    /**
-     * Display rover's position.
-     */
-    public void displayPosition(final String prefix) {
-        log.info("Rover[" + roverId + "] " + prefix + " POSITION Is: " + position.getX() + " " + position.getY() + " " +
-                Direction.getDirectionByOrientation(position.getOrientation()));
     }
 
 

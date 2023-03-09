@@ -51,7 +51,7 @@ public class PlateauCoordinates {
 
         String[] inputCoordinates= input.split(" ");
         if (inputCoordinates.length != 2) {
-            throw new InvalidCoordinatesException("Please input correct values!");
+            throw new InvalidCoordinatesException("Please input correct Plateau values!");
         }
         int top = Integer.parseInt(inputCoordinates[0]);
         int right = Integer.parseInt(inputCoordinates[1]);

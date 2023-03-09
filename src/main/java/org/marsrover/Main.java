@@ -18,7 +18,7 @@ import java.util.UUID;
 @Slf4j
 public class Main {
 
-    private Rover initRover(String roverPositionInput, String commandInput) throws MarsRoverInputException {
+    public Rover initRover(String roverPositionInput, String commandInput) throws MarsRoverInputException {
         Rover rover = null;
         try {
             String[] roverPosition = roverPositionInput.split(" ");
@@ -42,12 +42,20 @@ public class Main {
 
     }
 
-    private void navigateRovers(List<Rover> roverList) {
+    public void printNavigateRovers(List<Rover> roverList) {
         roverList.forEach(rover -> {
             rover.navigateRover();
             log.info("Rover[" + rover.getRoverId() + "] Final Position after series of commands: " + rover.getPosition().getX() + " " + rover.getPosition().getY() + " " +
                     Direction.getDirectionByOrientation(rover.getPosition().getOrientation()));
         });
+    }
+
+    public String getRoverPositionAfterNavigation(Rover rover) {
+        String navigatedRoverPosition = "";
+
+        navigatedRoverPosition = rover.getPosition().getX() + " " + rover.getPosition().getY() + " " + Direction.getDirectionByOrientation(rover.getPosition().getOrientation());
+
+        return navigatedRoverPosition;
     }
 
     public static void main(String[] args) throws IOException {
@@ -60,7 +68,7 @@ public class Main {
         List<Rover> roverList = new ArrayList<Rover>();
         try {
             // taking two rover inputs for the deployment. It can be increased as per the need
-            for (int i=0; i<2; i++) {
+            for (int i = 0; i < 2; i++) {
                 Rover rover = null;
                 log.info("Please input the Rover Position split by Space! for e.g: 1 2 N");
                 String roverPositionLine = br.readLine();
@@ -70,7 +78,7 @@ public class Main {
                 roverList.add(rover);
             }
             br.close();
-            main.navigateRovers(roverList);
+            main.printNavigateRovers(roverList);
         } catch (MarsRoverInputException me) {
             log.error("Error: ", me);
         }
