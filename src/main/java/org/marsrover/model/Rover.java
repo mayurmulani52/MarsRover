@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.marsrover.constants.Direction;
-import org.marsrover.exception.InvalidCoordinatesException;
 import org.marsrover.exception.MarsRoverInputException;
 
 
@@ -30,7 +29,6 @@ public class Rover {
      */
     public void turnLeft() {
         int left = ((position.getOrientation() == 0) ? Direction.cardinalPoints.size() : position.getOrientation()) - 1;
-        //log.info("Rover[" + roverId + "] LEFT(" + Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(left));
         position.setOrientation(left);
     }
 
@@ -39,7 +37,6 @@ public class Rover {
      */
     public void turnRight() {
         int right = (position.getOrientation() + 1) % Direction.cardinalPoints.size();
-        //log.info("Rover[" + roverId + "] RIGHT(" +Direction.cardinalPoints.get(position.getOrientation()) + ") -> " + Direction.cardinalPoints.get(right));
         position.setOrientation(right);
     }
 
@@ -47,7 +44,6 @@ public class Rover {
      * Method to move rover one step forward.
      */
     public void moveForward() {
-        //log.info("Rover[" + roverId + "] MOVE FWD");
         switch (Direction.cardinalPoints.get(position.getOrientation())) {
             case Direction.NORTH:
                 if (position.getY() < PlateauCoordinates.getTop()) {
